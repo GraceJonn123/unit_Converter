@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Trial</title>
-	<link rel="stylesheet" type="text/css" href="wow.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <script language="JavaScript">
 <!--
@@ -89,15 +89,57 @@ document.convert.t.value = m / tValue
 }
 //-->
 </script>
+<script type="text/javascript">
+
+// Length Converter script- By Bruce Zhang
+// For this and over 400+ free scripts, visit JavaScript Kit- http://www.javascriptkit.com/
+// Please keep this notice intact
+
+var factors1 = new Array(1, 0.01, 0.00001, 0.00000621, 0.3937, 0.0328, 0.01094);
+var factors2 = new Array(100, 1, 0.001, 0.000621, 39.37, 3.28,  1.094);
+var factors3 = new Array(100000, 1000, 1, 0.621, 39370, 3280, 1094);
+var factors4 = new Array(160934, 1609.34, 1.60934, 1, 63360, 5280,1760);
+var factors5 = new Array(2.54, 0.0254, 0.0000254, 0.0000158, 1, 0.08333, 0.02778);
+var factors6 = new Array(30.48, 0.3048, 0.0003048, 0.0001896, 12, 1, 0.3333);
+var factors7 = new Array(91.44, 0.9144, 0.0009144, 0.0005688, 36, 3, 1);
+var factors = new Array(factors1,factors2,factors3,factors4,factors5,factors6,factors7);
+
+function convert_unit()
+{
+	from_index = document.length_con.from_unit.selectedIndex;
+	to_index = document.length_con.to_unit.selectedIndex;
+	factor = factors[from_index][to_index];
+	document.getElementById("formula").innerHTML = document.length_con.from_unit.options[document.length_con.from_unit.selectedIndex].text + " = " + factor + " " + document.length_con.to_unit.options[document.length_con.to_unit.selectedIndex].text;
+	if(isNaN(document.length_con.from_value.value))
+		document.getElementById("to_value").innerHTML = "Not a valid number.";
+	else
+		document.getElementById("to_value").innerHTML = factor * document.length_con.from_value.value;
+}
+</script>
+<script type="text/javascript">
+	function celsconv() {
+  document.convert.result.value=Math.round(((document.convert.temp.value) * 9/5 + 32) * 10) / 10;
+}
+
+function fahrconv() {
+  document.convert.temp.value=Math.round(((((document.convert.result.value)- 32) * 5)/9) * 10) / 10;
+}
+
+if(document.layers) window.captureEvents(Event.KEYDOWN);
+function enterKey() {
+  if(event.keyCode==13) event.keyCode=9;
+}
+</script>
+<script type="text/javascript" src="temperatureConverter.js"></script>
 <body>
 <ul class="tabs">
   <li>
     <input type="radio" name="tabs" id="tab1" checked />
     <label for="tab1">Weight</label>
     <div id="tab-content1" class="tab-content">
-     <div class="weight" id="weight"><!-- 
-	<center><h1>Weight Converter</h1></center> --></br>
-<p> This script creates a weight converter that can convert five different units at one time. To use it, choose your unit at the first line and enter the a number in the box beside it, then click the convert button. It automatically converts your choice to all five units.</p></br>
+     <div class="weight" id="weight">
+	<h3>Weight Converter</h3><hr></br>
+<center><p> This script creates a weight converter that can convert five different units at one time. <br>To use it, choose your unit at the first line and enter the a number in the box beside it, then click the convert button. <br>It automatically converts your choice to all five units.</p></center></br>
 </br>
 </br>
 
@@ -169,31 +211,90 @@ document.convert.t.value = m / tValue
     <label for="tab2">Current Time</label>
     <div id="tab-content2" class="tab-content">
      <div class="time" id="time">
+     <h3>Current Time</h3><hr><br>
 		<form name="clockForm">
 		<input type="button" name="clockButton" value="Loading..." />
 		</form>	
 	 </div>
     </div>
   </li>
-</ul>
-<ul class="tabs">
+
+<!-- ***************** Length converter begins here *************** -->
+
   <li>
     <input type="radio" name="tabs" id="tab3" checked />
-    <label for="tab3">Description</label>
+    <label for="tab3">Length</label>
     <div id="tab-content3" class="tab-content">
-      <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+     <div class="length">
+     	<h3>Length Converter</h3>
+     	<hr><br>
+<p>
+<b>1. </b> Select a length unit from the "From" dropdown list and one from the "To" dropdown list.</br>
+</br><b>2. </b> Enter a numeric value, and click "To" button.
+<p><form name="length_con">
+<table>
+	<tr>
+		<td>From</td>
+		<td>
+			<select name=from_unit onChange="convert_unit()";>
+			<option> centimeters
+			<option> meters
+			<option> kilometers
+			<option> miles
+			<option> inches
+			<option> feet
+			<option> yards
+			</select>
+		</td>
+		<td>To</td>
+		<td>
+			<select name=to_unit onChange="convert_unit()";>
+			<option> centimeters
+			<option> meters
+			<option> kilometers
+			<option> miles
+			<option> inches
+			<option> feet
+			<option> yards
+			</select>
+		</td>
+	</tr></br>
+	<tr>
+		<td></td><td colspan="3"><div id="formula">centimeters = 1 centimeters</div></td>
+	</tr></br></br>
+	<tr>
+		<td colspan="4"></td>
+	</tr>
+
+	<tr>
+		<td>Enter</td>
+		<td><input type="text" name="from_value" value="1" size="12" maxlength="12"></td>
+		<td><input type=button value="To" onClick="convert_unit()";></td>
+		<td><div id="to_value">1</div></td>
+	</tr>
+
+	<tr>
+</table>
+
+</form>
+     </div>
     </div>
   </li>
 
+<!-- ***************** Temparature converter begins here *************** -->
   <li>
     <input type="radio" name="tabs" id="tab4" />
-    <label for="tab4">Specification</label>
+    <label for="tab4">Temparature</label>
     <div id="tab-content4" class="tab-content">
-      <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia
-        voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius
-        modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit
-        qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla?</p>
+     <form name="convert">
+<h3>Temperature Converter</h3><hr><br>
+<p>
+<b>1. </b> Write a temparature unit in either of the boxes.<br>
+<br /><b>2. </b> Click enter on your keyboard and view the converted unit in the other box.</p><br>
+  <input style="text-align: right;" type="text" size="6" name="result" value="00" onChange="fahrconv()"; onKeyDown="enterKey()" onFocus="select()"><b>Fahrenheit</b>
+  <br></br>
+  <input style="text-align: right;" type="text" size="6" name="temp" value="00" onChange="celsconv()"; onKeyDown="enterKey()" onFocus="select()"><b>Centrigrade</b>
+</form>
     </div>
   </li>
 </ul>
