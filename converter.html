@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Trial</title>
+	<link rel="stylesheet" type="text/css" href="wow.css">
+</head>
+<script language="JavaScript">
+<!--
+function clock(){
+var time = new Date()
+var hr = time.getHours()
+var min = time.getMinutes()
+var sec = time.getSeconds()
+if (hr < 10){
+hr = " " + hr
+}
+if (min < 10){
+min = "0" + min
+}
+if (sec < 10){
+sec = "0" + sec
+}
+document.clockForm.clockButton.value = hr + ":" + min + ":" + sec
+setTimeout("clock()", 1000)
+}
+function showDate(){
+var date = new Date()
+var year = date.getYear()
+if(year < 1000){
+year += 1900
+}
+var monthArray = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
+alert(monthArray[date.getMonth()] + " " + date.getDate() + ", " + year)
+}
+window.onload=clock;
+//-->
+</script>
+<script type="text/javascript" language="JavaScript">
+<!--
+//    Script Editor:   Howard Chen
+//    Browser Compatible for the script: IE 3.0 or Higher
+//                                       Netscape 2.0 or Higher
+//    This script is free as long as you keep its credits
+/*The way this works is the converter converts the number
+into the smallest unit in the converter, in this case it will
+be gram, and then it converts the unit fram gram to other units.*/
+function nofocus()
+{
+document.convert.InUnit.focus()
+}
+var gValue = 1
+var kgValue = 1000
+var ounceValue = 28.3495
+var lbValue = 453.592
+var tValue = 907184
+function toCM()
+{
+var i = document.convert.unit.selectedIndex
+var thisUnit = document.convert.unit.options[i].value
+if (thisUnit == "G")
+        {
+document.convert.g.value = document.convert.InUnit.value
+        }
+else if(thisUnit == "KG")
+        {
+document.convert.g.value = document.convert.InUnit.value * kgValue
+        }
+else if(thisUnit == "OUNCE" )
+        {
+document.convert.g.value = document.convert.InUnit.value * ounceValue
+        }
+else if(thisUnit == "LB" )
+        {
+document.convert.g.value = document.convert.InUnit.value * lbValue
+        }
+else if(thisUnit == "T" )
+        {
+document.convert.g.value = document.convert.InUnit.value * tValue
+        }
+toAll()
+}
+function toAll()
+{
+var m = document.convert.g.value
+document.convert.kg.value = m / kgValue
+document.convert.ounce.value = m / ounceValue
+document.convert.lb.value = m / lbValue
+document.convert.t.value = m / tValue
+}
+//-->
+</script>
+<body>
+<ul class="tabs">
+  <li>
+    <input type="radio" name="tabs" id="tab1" checked />
+    <label for="tab1">Weight</label>
+    <div id="tab-content1" class="tab-content">
+     <div class="weight" id="weight"><!-- 
+	<center><h1>Weight Converter</h1></center> --></br>
+<p> This script creates a weight converter that can convert five different units at one time. To use it, choose your unit at the first line and enter the a number in the box beside it, then click the convert button. It automatically converts your choice to all five units.</p></br>
+</br>
+</br>
+
+    <div align="center">
+        <form name="convert">
+            <table border=1>
+                <tr><th>Unit</th><th>Number</th></tr>
+                    <tr>
+                            <td>
+                                <select name="unit">
+                                <option value = "G">Gram
+                                <option value = "KG">Kilogram
+                                <option value = "OUNCE">Ounce
+                                <option value = "LB">Pound
+                                <option value = "T">U.S. Ton
+                                </select>
+                            </td>
+                            <td>
+                                <input type="text" name="InUnit" size="20" maxlength="20" value="0">
+                            </td>
+                    </tr>
+                    <tr>
+                            <td>Gram:</td>
+                            <td>
+                                <input type="text" name="g" size="20" maxlength="20" value="0" onFocus="nofocus()">
+                            </td>
+                    </tr>
+                    <tr>
+                            <td>Kilogram:</td>
+                            <td>
+                                <input type="text" name="kg" size="20" maxlength="20" value="0" onFocus="nofocus()">
+                            </td>
+                    </tr>
+                    <tr>
+                            <td>Ounce:</td>
+                            <td>
+                                <input type="text" name="ounce" size="20" maxlength="20" value="0" onFocus="nofocus()">
+                            </td>
+                    </tr>
+                     <tr>
+                          <td>Pound:</td>
+                            <td>
+                                <input type="text" name="lb" size="20" maxlength="20" value="0" onFocus="nofocus()">
+                            </td>
+                    </tr>
+                    <tr>
+                           <td>Tonne:</td>
+                            <td>
+                                <input type="text" name="t" size="20" maxlength="20" value="0" onFocus="nofocus()">
+                            </td>
+                    </tr>
+                    <tr>
+                            <td>
+                                <input type="Reset" value="Start Over" width=100>
+                            </td>
+                            <td>
+                                <input type="button" value="Convert" onClick="toCM()" width=150>
+                            </td>
+                    </tr>
+            </table>
+        </form>
+    </div>
+</div>
+    </div>
+  </li>
+
+  <li>
+    <input type="radio" name="tabs" id="tab2" />
+    <label for="tab2">Current Time</label>
+    <div id="tab-content2" class="tab-content">
+     <div class="time" id="time">
+		<form name="clockForm">
+		<input type="button" name="clockButton" value="Loading..." />
+		</form>	
+	 </div>
+    </div>
+  </li>
+</ul>
+<ul class="tabs">
+  <li>
+    <input type="radio" name="tabs" id="tab3" checked />
+    <label for="tab3">Description</label>
+    <div id="tab-content3" class="tab-content">
+      <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+    </div>
+  </li>
+
+  <li>
+    <input type="radio" name="tabs" id="tab4" />
+    <label for="tab4">Specification</label>
+    <div id="tab-content4" class="tab-content">
+      <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia
+        voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius
+        modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit
+        qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla?</p>
+    </div>
+  </li>
+</ul>
+
+<br style="clear: both;" />
+</body>
+</html>
