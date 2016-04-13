@@ -1,4 +1,4 @@
-/*ul {
+/*/*/*/*/*/*ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -67,7 +67,7 @@ nav li a {
 #selected {
     padding-bottom: 1px; 
     background: white;
-}*/
+}*//*
 @import url("http://fonts.googleapis.com/css?family=Lato");
 * {
   margin: 0;
@@ -184,7 +184,7 @@ p.link a:hover {
 li a.active {
     background-color: #4CAF50;
     color: white;
-}
+}*/
 body{*//*
     background-color: yellow;
 }
@@ -324,4 +324,4 @@ p.link a:hover {
 li a:hover:not(.active) {
     background-color: #555;
     color: white;
-}*/
+}*/*/*/*/*/*/
